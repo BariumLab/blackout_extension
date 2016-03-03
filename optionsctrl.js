@@ -24,8 +24,19 @@ function restore_options() {
   });
 }
 
+// Adds a filter word to the list.
+var add_to_list = function (word) {
+  var list = document.getElementById('keywords');
+  var item = document.createElement("li");
+  var anchor = document.createElement("a");
+
+  anchor.innerText = word;
+  item.appendChild(anchor);
+  list.appendChild(item);
+}
+
 // Allows list to be edited.
-function remove_from_list(){
+function remove_from_list() {
 
 }
 
