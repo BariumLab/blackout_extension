@@ -28,18 +28,26 @@ function restore_options() {
 var add_to_list = function (word) {
   var list = document.getElementById('keywords');
   var item = document.createElement("li");
-  var anchor = document.createElement("a");
 
-  anchor.innerText = word;
-  item.appendChild(anchor);
+  item.innerHTML = '<input type="checkbox" />' + word;
   list.appendChild(item);
 }
 
-// Allows list to be edited.
-function remove_from_list() {
+// Removes selected filter words from the list.
+var remove_from_list = function () {
+  var list = document.getElementById('keywords');
+  var items = Array.prototype.slice.call(list.childNodes);
+  var item;
 
+  while(item = items.pop()) {
+    if(item.firstChild && item.firstChild.checked){
+      list.removeChild(item);
+    }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', restore_options);
 document.getElementById('save').addEventListener('click',
     save_options);
+document.getElementById('remove').addEventListener('click',
+    remove_from_list);
